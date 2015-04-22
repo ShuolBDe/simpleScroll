@@ -20,8 +20,8 @@
         init : function(id,className,direction,num){
             //alert(className);
             //alert(direction);
-        	//clear previous
-        	this.clearPrev(id, className);
+        	//clear previous and currentBlink
+        	$mS.clearPrev(id);
             setting = tools.clone(_setting);
             setting.id = id;
             var elements = $("."+className);
@@ -35,12 +35,20 @@
             }
             
             //document.onkeydown = tools.keyTrace;
-            
-            this.bind_event(setting.id,num,direction);
+            $mS.unbind_event(id);
+            $mS.bind_event(setting.id,num,direction);
             
         },
         clearPrev : function(id){
         	$("#"+id+" ul[class*='scroll_ul']").remove();
+        },
+        unbind_event : function(id){
+        	if(id){
+        		$("body").off("onScrollLeft","#" + id);
+        		$("body").off("onScrollUp","#" + id);
+        		$("body").off("onScrollRight","#" + id);
+        		$("body").off("onScrollDown","#" + id);
+        	}
         },
         bind_event : function(id,num,vh){
             $("body").on("onScrollLeft","#" + id,function(){
@@ -65,21 +73,21 @@
                 //        tools.myAddClass("leftScroll",[show,prev]);
                 //    },50);
                 //}else {
-                $("." + vh + "_scroll_ul").stop(true,true);
+                $("#" + id + " ." + vh + "_scroll_ul").stop(true,true);
                 if(vh == "h"){
                     var maxLeft = 0;
-                    var curLeft = $("." + vh + "_scroll_ul").css("left");
+                    var curLeft = $("#" + id + " ." + vh + "_scroll_ul").css("left");
                     if(curLeft == "auto" || curLeft == maxLeft + "px"){
                         return;
                     }
-                    $("." + vh + "_scroll_ul").animate({left:"+="+tools.unitWidth(id)},500);
+                    $("#" + id + " ." + vh + "_scroll_ul").animate({left:"+="+tools.unitWidth(id)},500);
                 }else {
                     var maxTop = 0;
-                    var curTop = $("." + vh + "_scroll_ul").css("top");
+                    var curTop = $("#" + id + " ." + vh + "_scroll_ul").css("top");
                     if(curTop == "auto" || curTop == maxTop + "px"){
                         return;
                     }
-                    $("." + vh + "_scroll_ul").animate({top:"+="+tools.unitHeight(id)},500);
+                    $("#" + id + " ." + vh + "_scroll_ul").animate({top:"+="+tools.unitHeight(id)},500);
                 }
 
                 //}
@@ -87,21 +95,21 @@
             });
             $("body").on("onScrollUp","#" + id,function(){
                 //alert("up");
-                $("." + vh + "_scroll_ul").stop(true,true);
+                $("#" + id + " ." + vh + "_scroll_ul").stop(true,true);
                 if(vh == "h"){
                     var maxLeft = 0;
-                    var curLeft = $("." + vh + "_scroll_ul").css("left");
+                    var curLeft = $("#" + id + " ." + vh + "_scroll_ul").css("left");
                     if(curLeft == "auto" || curLeft == maxLeft + "px"){
                         return;
                     }
-                    $("." + vh + "_scroll_ul").animate({left:"+="+tools.unitWidth(id)},500);
+                    $("#" + id + " ." + vh + "_scroll_ul").animate({left:"+="+tools.unitWidth(id)},500);
                 }else {
                     var maxTop = 0;
-                    var curTop = $("." + vh + "_scroll_ul").css("top");
+                    var curTop = $("#" + id + " ." + vh + "_scroll_ul").css("top");
                     if(curTop == "auto" || curTop == maxTop + "px"){
                         return;
                     }
-                    $("." + vh + "_scroll_ul").animate({top:"+="+tools.unitHeight(id)},500);
+                    $("#" + id + " ." + vh + "_scroll_ul").animate({top:"+="+tools.unitHeight(id)},500);
                 }
             });
             $("body").on("onScrollRight","#" + id,function(){
@@ -128,45 +136,45 @@
                 //    //    tools.myRemoveClass("rightScroll",[show,next]);
                 //    //},500);
                 //}else {
-                $("." + vh + "_scroll_ul").stop(true,true);
+                $("#" + id + " ." + vh + "_scroll_ul").stop(true,true);
 
                 //}
                 if(vh == "h"){
-                    var maxLeft = (num - $(".scroll_li").length) * tools.unitWidth(id);
-                    if($("." + vh + "_scroll_ul").css("left") == maxLeft + "px"){
+                    var maxLeft = (num - $("#" + id + " .scroll_li").length) * tools.unitWidth(id);
+                    if($("#" + id + " ." + vh + "_scroll_ul").css("left") == maxLeft + "px"){
                         return;
                     }
 
-                    $("." + vh + "_scroll_ul").animate({left:"-="+tools.unitWidth(id)},500);
+                    $("#" + id + " ." + vh + "_scroll_ul").animate({left:"-="+tools.unitWidth(id)},500);
                 }else {
-                    var maxTop = (num - $(".scroll_li").length) * tools.unitHeight(id);
-                    if($("." + vh + "_scroll_ul").css("top") == maxTop + "px"){
+                    var maxTop = (num - $("#" + id + " .scroll_li").length) * tools.unitHeight(id);
+                    if($("#" + id + " ." + vh + "_scroll_ul").css("top") == maxTop + "px"){
                         return;
                     }
 
-                    $("." + vh + "_scroll_ul").animate({top:"-="+tools.unitHeight(id)},500);
+                    $("#" + id + " ." + vh + "_scroll_ul").animate({top:"-="+tools.unitHeight(id)},500);
                 }
 
             });
             $("body").on("onScrollDown","#" + id,function(){
                 //alert("down");
-                $("." + vh + "_scroll_ul").stop(true,true);
+                $("#" + id + " ." + vh + "_scroll_ul").stop(true,true);
 
                 //}
                 if(vh == "h"){
-                    var maxLeft = (num - $(".scroll_li").length) * tools.unitWidth(id);
-                    if($("." + vh + "_scroll_ul").css("left") == maxLeft + "px"){
+                    var maxLeft = (num - $("#" + id + " .scroll_li").length) * tools.unitWidth(id);
+                    if($("#" + id + " ." + vh + "_scroll_ul").css("left") == maxLeft + "px"){
                         return;
                     }
 
-                    $("." + vh + "_scroll_ul").animate({left:"-="+tools.unitWidth(id)},500);
+                    $("#" + id + " ." + vh + "_scroll_ul").animate({left:"-="+tools.unitWidth(id)},500);
                 }else {
-                    var maxTop = (num - $(".scroll_li").length) * tools.unitHeight(id);
-                    if($("." + vh + "_scroll_ul").css("top") == maxTop + "px"){
+                    var maxTop = (num - $("#" + id + " .scroll_li").length) * tools.unitHeight(id);
+                    if($("#" + id + " ." + vh + "_scroll_ul").css("top") == maxTop + "px"){
                         return;
                     }
 
-                    $("." + vh + "_scroll_ul").animate({top:"-="+tools.unitHeight(id)},500);
+                    $("#" + id + " ." + vh + "_scroll_ul").animate({top:"-="+tools.unitHeight(id)},500);
                 }
             });
         }
@@ -180,13 +188,13 @@
         },
         apply: function(fun, param, defaultValue) {
             if ((typeof fun) == "function") {
-                return fun.apply(mS,param?param:[]);
+                return fun.apply($mS,param?param:[]);
             }
             return defaultValue;
         },
         call: function(fun, param, defaultValue) {
             if ((typeof fun) == "function") {
-                return fun.call(mS,param);
+                return fun.call($mS,param);
             }
             return defaultValue;
         },
@@ -202,7 +210,7 @@
             return o;
         },
         //create ul
-        createUl : function(elements,vh){
+        createUl : function(elements,vh,num){
             var ul = document.createElement("ul");
             ul.className = vh + "_scroll_ul";
             for(var i = 0;i < elements.size();i ++){
@@ -213,11 +221,15 @@
                 li.appendChild(elements[i]);
                 ul.appendChild(li);
             }
+            //add attribute to mark which is visible
+            for(var j = 0;j < num;j++){
+            	$(ul.children[j]).attr("rel","scrollShow");
+            }
             return ul;
         },
         //show num
         horizontal_init : function(id,elements,num){
-            var ul = tools.createUl(elements,"h");
+            var ul = tools.createUl(elements,"h",num);
             //alert(ul.innerHTML);
             $("#" + id).append(ul);
             //if(num == 1){
@@ -238,7 +250,7 @@
         },
         vertical_init : function(id,elements,num){
             //alert(elements.size());
-            var ul = tools.createUl(elements,"v");
+            var ul = tools.createUl(elements,"v",num);
             //alert(ul.innerHTML);
             $("#" + id).append(ul);
             //if(num == 1){
@@ -246,9 +258,9 @@
             //    $(".show_h_scroll_li").css({"left":"0"});
             //}else {
             var liHeight = 1 / num * 100;
-            var li_count = $(".v_scroll_li").length;
-            $(".v_scroll_ul").css("height",li_count * liHeight + "%");
-            $(".v_scroll_li").css({"position":"relative","height":1/li_count * 100 + "%","left":"0","float":"none"});
+            var li_count = $("#" + id + " .v_scroll_li").length;
+            $("#" + id + " .v_scroll_ul").css("height",li_count * liHeight + "%");
+            $("#" + id + " .v_scroll_li").css({"position":"relative","height":1/li_count * 100 + "%","left":"0","float":"none"});
 
         },
         myAddClass : function(className,box) {
@@ -314,6 +326,6 @@
 
         }
     };
-    var mS = $.fn.myScroll;
+    var $mS = $.fn.myScroll;
 
 })(jQuery);

@@ -1,0 +1,126 @@
+.slideCurBlink {
+    /* color:#FFAE00; */
+    /* transform:scale(1.2); */
+}
+
+.currentBlink{
+    /* box-shadow: 2px 2px 15px rgba(60, 51, 76, 0.8); #01CCFF */
+    animation:neon1 0.7s infinite alternate ease-in-out;
+    -webkit-animation:neon1 0.7s infinite alternate ease-in-out;
+    /* animation:blinkNode 0.3s forwards ease-in-out;
+    -webkit-animation:blinkNode 0.3s  forwards ease-in-out; */
+    /*display: inline-block;*/
+    /* color: #FFAE00;
+    left: 7%;
+    z-index: 99; */
+}
+
+@keyframes blinkNode
+{
+     0% {box-shadow: 0px 0px 2px rgba(60, 51, 76, 0.8);}
+     100% {box-shadow: 0px 0px 8px rgba(60, 51, 76, 0.8);}
+    /*0% {}
+    100% {transform: scale(1.2);box-shadow: 1px 1px 20px red;}*/
+
+}
+@-webkit-keyframes blinkNode{
+     0% {box-shadow: 0px 0px 2px rgba(60, 51, 76, 0.8);}
+     100% {box-shadow: 0px 0px 8px rgba(60, 51, 76, 0.8);}
+    /*0% {}
+    100% {-webkit-transform: scale(1.2);box-shadow: 1px 1px 20px red;}*/
+}
+/*glow for webkit*/
+@-webkit-keyframes neon1 {
+    from {
+        text-shadow:0 0 0.5vw #fff,
+        0 0 1vw #fff,
+        0 0 1.5vw #fff,
+        0 0 2vw #FFF,
+        0 0 3.5vw #FFF,
+        0 0 4vw #FFF,
+        0 0 5vw #FFF,
+        0 0 7.5vw #FFF;
+    }
+    to {
+        text-shadow: 0 0 0.25vw #fff,
+        0 0 0.5vw #fff,
+        0 0 0.75vw #fff,
+        0 0 1vw #FFF,
+        0 0 1.75vw #FFF,
+        0 0 2vw #FFF,
+        0 0 2.5vw #FFF,
+        0 0 3.75vw #FFF;
+    }
+}
+@-moz-keyframes neon1 {
+    from {
+        text-shadow:0 0 0.5vw #fff,
+        0 0 1vw #fff,
+        0 0 1.5vw #fff,
+        0 0 2vw #FFF,
+        0 0 3.5vw #FFF,
+        0 0 4vw #FFF,
+        0 0 5vw #FFF,
+        0 0 7.5vw #FFF;
+    }
+
+    to {
+        text-shadow: 0 0 0.25vw #fff,
+        0 0 0.5vw #fff,
+        0 0 0.75vw #fff,
+        0 0 1vw #FFF,
+        0 0 1.75vw #FFF,
+        0 0 2vw #FFF,
+        0 0 2.5vw #FFF,
+        0 0 3.75vw #FFF;
+    }
+
+}
+@-o-keyframes neon1 {
+    from {
+        text-shadow:0 0 0.5vw #fff,
+        0 0 1vw  #fff,
+        0 0 1.5vw #fff,
+        0 0 2vw #FFF,
+        0 0 3.5vw #FFF,
+        0 0 4vw #FFF,
+        0 0 5vw #FFF,
+        0 0 7.5vw #FFF;
+    }
+
+    to {
+        text-shadow: 0 0 0.25vw #fff,
+        0 0 0.5vw #fff,
+        0 0 0.75vw #fff,
+        0 0 1vw #FFF,
+        0 0 1.75vw #FFF,
+        0 0 2vw #FFF,
+        0 0 2.5vw #FFF,
+        0 0 3.75vw #FFF;
+    }
+}
+@keyframes neon1 {
+    from {
+        text-shadow:0 0 0.5vw #fff,
+        0 0 1vw #fff,
+        0 0 1.5vw #fff,
+        0 0 2vw #FFF,
+        0 0 3.5vw #FFF,
+        0 0 4vw #FFF,
+        0 0 5vw #FFF,
+        0 0 7.5vw #FFF;
+
+    }
+
+    to {
+        text-shadow:0 0 0.25vw #fff,
+        0 0 0.5vw #fff,
+        0 0 0.75vw #fff,
+        0 0 1vw #FFF,
+        0 0 1.75vw #FFF,
+        0 0 2vw #FFF,
+        0 0 2.5vw #FFF,
+        0 0 3.75vw #FFF;
+    }
+
+}
