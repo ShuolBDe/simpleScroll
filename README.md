@@ -11,7 +11,7 @@ Required,
 
 	A show area which u want to show a set of <img> (whatever,<div>/<table> also be fine),
 	
-	A the set of <node> , even no need to set css,
+	A set of <node> , even no need to set css, but need a same classname
 	
 Go with,
 
