@@ -36,7 +36,7 @@ Go with,
 	
 Considering,
 
-	I only bind event with no trigger , u can customize your condition to trigger them like:
+	We only bind event with no trigger , u can customize your condition to trigger them like:
 	
 	$(node).trigger("onScrollLeft");
 	
