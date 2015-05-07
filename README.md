@@ -54,9 +54,7 @@ Agreement,
 
 	1. We split the window into 3 parts --- header/sidebar/container,and add simple action among the 3 parts;
 
-	2. We trace keyboard by tracing <node>s, so u need add className named "clickable" to every node u want to 
-
-trace;
+	2. We trace keyboard by tracing <node>s, so u need add className named "clickable" to every node u want to trace;
 	
 	3. We also need a id "firstclickable" to mark which <node> the tracing will go on with;
 	
