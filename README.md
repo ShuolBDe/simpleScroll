@@ -24,11 +24,11 @@ Go with,
 	
 	 * id : which the elements will be appended to
 	 
-	 * className : divs' className
+	 * className : the set of <node>'s className
 	 
 	 * direction : scroll direction(h:"horizontal"/v:"vertical")
 
-	 * num : number of li's length the re-construct will show
+	 * num : numeric of elements u want to show in shown area
 
 	 */
 	 
