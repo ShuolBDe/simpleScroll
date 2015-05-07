@@ -44,8 +44,6 @@ Join us,
 
 	We need u to improve this simple plug-in :-)
 
-==========================================
-
 ===============keyTrace===================
 
 An example for matching scroll with keyboard input.
