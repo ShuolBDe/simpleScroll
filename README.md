@@ -44,4 +44,16 @@ Join us,
 
 	We need u to improve this simple plug-in :-)
 
-=======================================
+==========================================
+
+===============keyTrace===================
+
+An example for matching scroll with keyboard input.
+
+There is a set of agreement to trace keyboard input like :
+
+I split the window with 3 parts --- header/sidebar/container,and add simple action among the 3 parts.
+
+Pls overwrite for the necessary logic u go with. 
+
+==========================================

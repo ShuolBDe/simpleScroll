@@ -2,7 +2,7 @@
     //default settings
     _setting = {
         id : "re-construct", // which the elements will be append to
-        num : 1,        //number of li's length the re-construct will show
+        num : 1,        //numeric of elements u want to show in shown area
         moveLen : 1     //number of the next/previous N will skip
     };
     setting = {};
@@ -10,21 +10,21 @@
         /*
          * id : which the elements will be appended to
          *
-         * className : divs' className
+         * className : the set of <node>'s className
          *
          * direction : scroll direction(h:"horizontal"/v:"vertical")
          *
-         * num : number of li's length the re-construct will show
+         * num : numeric of elements u want to show in shown area
          *
          */
         init : function(id,className,direction,num){
-            //alert(className);
-            //alert(direction);
-        	//clear previous and currentBlink
+        	//clear previous ul
         	$mS.clearPrev(id);
+
             setting = tools.clone(_setting);
             setting.id = id;
             var elements = $("."+className);
+            //directions
             if(direction == "h"){
                 tools.horizontal_init(setting.id,elements,num);
             }else if(direction == "v"){
@@ -52,7 +52,6 @@
         },
         bind_event : function(id,num,vh){
             $("body").on("onScrollLeft","#" + id,function(){
-                ////alert("left");
                 //if(num == 1){
                 //    var show = $(".show_h_scroll_li");
                 //    var prev = $(".show_h_scroll_li").prev();
@@ -73,7 +72,10 @@
                 //        tools.myAddClass("leftScroll",[show,prev]);
                 //    },50);
                 //}else {
+
+                //animation async
                 $("#" + id + " ." + vh + "_scroll_ul").stop(true,true);
+                //directions bind
                 if(vh == "h"){
                     var maxLeft = 0;
                     var curLeft = $("#" + id + " ." + vh + "_scroll_ul").css("left");
@@ -94,8 +96,9 @@
 
             });
             $("body").on("onScrollUp","#" + id,function(){
-                //alert("up");
+                //animation async
                 $("#" + id + " ." + vh + "_scroll_ul").stop(true,true);
+                //directions bind
                 if(vh == "h"){
                     var maxLeft = 0;
                     var curLeft = $("#" + id + " ." + vh + "_scroll_ul").css("left");
@@ -136,9 +139,11 @@
                 //    //    tools.myRemoveClass("rightScroll",[show,next]);
                 //    //},500);
                 //}else {
+                //animation async
                 $("#" + id + " ." + vh + "_scroll_ul").stop(true,true);
 
                 //}
+                //directions bind
                 if(vh == "h"){
                     var maxLeft = (num - $("#" + id + " .scroll_li").length) * tools.unitWidth(id);
                     if($("#" + id + " ." + vh + "_scroll_ul").css("left") == maxLeft + "px"){
@@ -157,10 +162,11 @@
 
             });
             $("body").on("onScrollDown","#" + id,function(){
-                //alert("down");
+                //animation async
                 $("#" + id + " ." + vh + "_scroll_ul").stop(true,true);
 
                 //}
+                //directions bind
                 if(vh == "h"){
                     var maxLeft = (num - $("#" + id + " .scroll_li").length) * tools.unitWidth(id);
                     if($("#" + id + " ." + vh + "_scroll_ul").css("left") == maxLeft + "px"){
@@ -230,16 +236,16 @@
         //show num
         horizontal_init : function(id,elements,num){
             var ul = tools.createUl(elements,"h",num);
-            //alert(ul.innerHTML);
+
             $("#" + id).append(ul);
             //if(num == 1){
             //    $($(".h_scroll_li")[0]).addClass("show_h_scroll_li");
             //    $(".show_h_scroll_li").css({"left":"0"});
             //}else {
-                var liWidth = 1 / num * 100;
-                var li_count = $(".h_scroll_li").length;
-                $(".h_scroll_ul").css("width",li_count * liWidth + "%");
-                $(".h_scroll_li").css({"position":"relative","width":1/li_count * 100 + "%","left":"0"});
+            var liWidth = 1 / num * 100;
+            var li_count = $(".h_scroll_li").length;
+            $(".h_scroll_ul").css("width",li_count * liWidth + "%");
+            $(".h_scroll_li").css({"position":"relative","width":1/li_count * 100 + "%","left":"0"});
                 //for(var i = 0;i < num;i++){
                 //    $($(".h_scroll_li")[i]).css("left","0");
                 //}
@@ -249,9 +255,9 @@
             //dispatch keyboard
         },
         vertical_init : function(id,elements,num){
-            //alert(elements.size());
+
             var ul = tools.createUl(elements,"v",num);
-            //alert(ul.innerHTML);
+
             $("#" + id).append(ul);
             //if(num == 1){
             //    $($(".h_scroll_li")[0]).addClass("show_h_scroll_li");
@@ -275,53 +281,53 @@
         },
         myTrigger : function(e){
             $("#" + setting.id).trigger("onScroll"+e);
-            //alert(currentBlink.className+ e);
         },
-        keyTrace : function(e){
-            var keynum;
-            if(true){
-                isKeyDown = true;
-                if(window.event) // IE
-                {
-                    keynum = e.keyCode;
-                }
-                else if(e.which) // Netscape/Firefox/Opera
-                {
-                    keynum = e.which;
-                }
-                switch (keynum){
-                    case 32://space
-                        break;
-                    case 37://left
-                        tools.myTrigger("Left");
-                        break;
-                    case 38://up
-                        tools.myTrigger("Up");
-                        break;
-                    case 39://right
-                        tools.myTrigger("Right");
-                        break;
-                    case 40://down
-                        //alert(40);
-                        tools.myTrigger("Down");
-                        break;
-                    case 13://enter
-                        tools.myTrigger("Enter");
-                        break;
-                    case 36:
-                        break;
-                    case 27://esc
-                        tools.myTrigger("Esc");
-                        //rowUlEsc();
-                        break;
-                    case 8://back space
-                        break;
-                    default:
-                        break;
-                }
+        // keyTrace : function(e){
+        //     var keynum;
+        //     if(true){
+        //         isKeyDown = true;
+        //         if(window.event) // IE
+        //         {
+        //             keynum = e.keyCode;
+        //         }
+        //         else if(e.which) // Netscape/Firefox/Opera
+        //         {
+        //             keynum = e.which;
+        //         }
+        //         switch (keynum){
+        //             case 32://space
+        //                 break;
+        //             case 37://left
+        //                 tools.myTrigger("Left");
+        //                 break;
+        //             case 38://up
+        //                 tools.myTrigger("Up");
+        //                 break;
+        //             case 39://right
+        //                 tools.myTrigger("Right");
+        //                 break;
+        //             case 40://down
+        //                 //alert(40);
+        //                 tools.myTrigger("Down");
+        //                 break;
+        //             case 13://enter
+        //                 tools.myTrigger("Enter");
+        //                 break;
+        //             case 36:
+        //                 break;
+        //             case 27://esc
+        //                 tools.myTrigger("Esc");
+        //                 //rowUlEsc();
+        //                 break;
+        //             case 8://back space
+        //                 break;
+        //             default:
+        //                 break;
+        //         }
 
-            }
-        },
+        //     }
+        // },
+        //auto scroll
         infinite : function(){
 
         }

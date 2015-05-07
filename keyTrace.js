@@ -198,6 +198,8 @@
         //    //    $(this).trigger("click");
         //    //});
         //},
+        
+        //locate currentBlink's index in obj
         locating : function(obj){
             var index = 0;
             for (var i = 0; i <= obj.size() - 1; i++,index++) {
